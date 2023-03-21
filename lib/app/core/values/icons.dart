@@ -1,4 +1,5 @@
 const personIcon= 0xe491; // person
+const workIcon= 0xe11c; // movie
 const movieIcon= 0xe40f; // movie
 const sportIcon= 0xe4dc; // sport
 const travelIcon= 0xe071; // travel
