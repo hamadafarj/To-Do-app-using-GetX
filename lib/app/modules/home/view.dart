@@ -9,6 +9,8 @@ import 'package:getx_todo/app/modules/home/widgets/add_dialog.dart';
 import 'package:getx_todo/app/modules/home/widgets/task_card.dart';
 import 'package:getx_todo/app/modules/report/view.dart';
 
+import '../test.dart';
+
 class HomePage extends GetView<HomeController> {
   const HomePage({super.key});
 
@@ -57,7 +59,8 @@ class HomePage extends GetView<HomeController> {
                     ))
               ],
             )),
-            ReportPage()
+            TestPage()
+           // ReportPage()
           ],
         ),
       ),

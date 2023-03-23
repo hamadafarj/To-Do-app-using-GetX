@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getx_todo/app/data/models/albums.dart';
 import 'package:getx_todo/app/data/models/tasks.dart';
 import 'package:getx_todo/app/data/services/storage/reposistory.dart';
 
@@ -16,10 +17,17 @@ class HomeController extends GetxController {
   final tabIndex = 0.obs;
   final doingTodos = <dynamic>[].obs;
   final doneTodos = <dynamic>[].obs;
+
+
+final ApiRepo _apiRepo=ApiRepo();
+var photos = List<AlbumModel>.empty(growable: true).obs;
+
+// final RxList<AlbumModel> photos=RxList<AlbumModel>([]);
   @override
   void onInit() {
     super.onInit();
     tasks.assignAll(taskRepository.readTasks());
+    fetchPhotos();
     ever(tasks, (_) => taskRepository.writeTasks(tasks));
   }
 
@@ -27,6 +35,11 @@ class HomeController extends GetxController {
   void onClose() {
     editCtr.dispose();
     super.onClose();
+  }
+
+  Future<void> fetchPhotos()async{
+    final List<AlbumModel> loadPhotos=await _apiRepo.loadPhoto();
+    photos.assignAll(loadPhotos);
   }
 
   void changeChipIndex(int value) {
